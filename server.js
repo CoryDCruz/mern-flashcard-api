@@ -3,7 +3,8 @@ const cors = require("cors")
 const morgan = require('morgan')
 const express = require('express')
 const mongoose = require('mongoose')
-
+const deckRouter = require('./controllers/decks')
+const flashcardRouter = require('./controllers/flashcards')
 const { PORT, DATABASE_URL } = process.env
 const app = express()
 
@@ -24,6 +25,9 @@ app.use(express.json())
 app.get('/', (req,res) => {
   res.send("Welcome to the Flashcard API")
 })
+
+app.use('/api/decks', deckRouter)
+app.use('/api/decks/:id', flashcardRouter)
 
 app.listen(PORT, () => {
   console.log("Running on: " + PORT)
