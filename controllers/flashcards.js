@@ -4,7 +4,6 @@ const flashcardsRouter = require('express').Router()
 
 //Delete
 flashcardsRouter.delete('/:id', async (req,res) => {
-  //TODO: need to also add in logic that removes the card id from the deck array
   try {
     res.status(200).json(
       await Flashcard.findByIdAndRemove(req.params.id)

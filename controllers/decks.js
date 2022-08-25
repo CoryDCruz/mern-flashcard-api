@@ -24,15 +24,7 @@ decksRouter.post('/', async (req,res) => {
 //TODO: try .pre middleware that occurs before remove in order to clean up flashcards when deleting a deck 
 decksRouter.delete('/:id', async (req,res) => {
     try {
-      res.status(201).json(
-        await Decks.findByIdAndDelete(req.params.id)
-        .then((deletedDeck) => {
-          Flashcards.deleteMany(
-            {_id: {$in: deletedDeck.flashcards}}
-          )
-        }
-      )
-        )
+      res.status(201).json(await Decks.findByIdAndDelete(req.params.id))
     } catch (error) {
       res.status(400).json({ message: "Bad request"})
     }
