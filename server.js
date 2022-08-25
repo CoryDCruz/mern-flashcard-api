@@ -27,7 +27,7 @@ app.get('/', (req,res) => {
 })
 
 app.use('/api/decks', deckRouter)
-app.use('/api/decks/:id', flashcardRouter)
+app.use('/api/decks/flashcards', flashcardRouter)
 
 app.listen(PORT, () => {
   console.log("Running on: " + PORT)

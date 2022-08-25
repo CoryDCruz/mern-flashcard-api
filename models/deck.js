@@ -13,6 +13,6 @@ const DeckSchema = new Schema(
   { timestamps: true }
 )
 
-const Deck = mongoose.model("Deck", DeckSchema)
+const Decks = mongoose.model("Decks", DeckSchema)
 
-module.exports = Deck
+module.exports = Decks

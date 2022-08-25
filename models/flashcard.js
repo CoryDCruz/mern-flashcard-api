@@ -10,6 +10,6 @@ const FlashcardSchema = new Schema(
     { timestamps: true }
     )
 
-const Flashcard = mongoose.model("Flashcard", FlashcardSchema)
+const Flashcards = mongoose.model("Flashcards", FlashcardSchema)
 
-module.exports = Flashcard
+module.exports = Flashcards
