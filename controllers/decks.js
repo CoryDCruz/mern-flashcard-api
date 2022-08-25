@@ -1,4 +1,5 @@
 const Decks = require('../models/deck')
+const Flashcards = require('../models/flashcard')
 const decksRouter = require('express').Router()
 
 //Index
@@ -20,9 +21,18 @@ decksRouter.post('/', async (req,res) => {
 })
 
 //Delete
-decksRouter.post('/:id', async (req,res) => {
+//TODO: try .pre middleware that occurs before remove in order to clean up flashcards when deleting a deck 
+decksRouter.delete('/:id', async (req,res) => {
     try {
-      res.status(201).json(await Decks.findByIdAndDelete(req.params.id))
+      res.status(201).json(
+        await Decks.findByIdAndDelete(req.params.id)
+        .then((deletedDeck) => {
+          Flashcards.deleteMany(
+            {_id: {$in: deletedDeck.flashcards}}
+          )
+        }
+      )
+        )
     } catch (error) {
       res.status(400).json({ message: "Bad request"})
     }
