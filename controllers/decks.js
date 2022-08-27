@@ -1,6 +1,6 @@
 const Decks = require('../models/deck')
-const Flashcards = require('../models/flashcard')
 const decksRouter = require('express').Router()
+
 
 //Index
 decksRouter.get('/', async (req,res) => {
@@ -51,4 +51,5 @@ decksRouter.get('/:id', async (req,res) => {
       res.status(400).json({ message: "Bad request"})
     }
 })
+
 module.exports = decksRouter
