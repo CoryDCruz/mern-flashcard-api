@@ -63,7 +63,7 @@ flashcardsRouter.post('/:id', async (req,res) => {
 
 flashcardsRouter.get('/:id', async (req, res) => {
   try {
-    res.status(200).json(await Flashcard.findById(req.params.id))
+    res.status(200).json(await Flashcard.find({ deck: req.params.id}))
   } catch (error) {
     res.status(400).json( { message: "Bad request" })
   }
